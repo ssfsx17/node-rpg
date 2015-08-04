@@ -1,0 +1,486 @@
+<html>
+<head>
+<title>Node RPG Points-to-Numbers Calculator</title>
+<style>
+table, th, td {
+	border: 1px dashed black;
+}
+
+th, td {
+	padding: 5px;
+}
+
+input.numberclass {
+	width: 3em;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="table.css"/>
+</head>
+<body>
+<script type="text/javascript">
+function calculateTable() {
+	var tablebody = document.getElementById("pointstable");
+
+	var birthTotal = 0;
+	var trainingTotal = 0;
+	var storyTotal = 0;
+	var experienceTotal = 0;
+
+	for (var rowindex = 0, currentRow; currentRow = tablebody.rows[rowindex]; rowindex++) {
+		var birthPoints = currentRow.cells[1].childNodes[0].value;
+		var birthNumber = currentRow.cells[2];
+		var trainingPoints = currentRow.cells[3].childNodes[0].value;
+		var trainingNumber = currentRow.cells[4];
+		var storyPoints = currentRow.cells[5].childNodes[0].value;
+		var storyNumber = currentRow.cells[6];
+		var experiencePoints = currentRow.cells[7].childNodes[0].value;
+		var experienceNumber = currentRow.cells[8];
+		var totalNumber = currentRow.cells[9];
+
+		var birthValue = pointsToNumber(birthPoints);
+		birthTotal = (birthTotal*1) + (birthPoints*1);
+		var trainingValue = pointsToNumber(trainingPoints);
+		trainingTotal = (trainingTotal*1) + (trainingPoints*1);
+		var storyValue = pointsToNumber(storyPoints);
+		storyTotal = (storyTotal*1) + (storyPoints*1);
+		var experienceValue = pointsToNumber(experiencePoints);
+		experienceTotal = (experienceTotal*1) + (experiencePoints*1);
+
+		birthNumber.innerHTML = "" + birthValue;
+		trainingNumber.innerHTML = "" + trainingValue;
+		storyNumber.innerHTML = "" + storyValue;
+		experienceNumber.innerHTML = "" + experienceValue;
+
+		var totalValue = birthValue + trainingValue + storyValue + experienceValue;
+		totalNumber.innerHTML = "" + totalValue;
+	}
+	document.getElementById("bptotal").innerHTML = "" + birthTotal;
+	document.getElementById("tptotal").innerHTML = "" + trainingTotal;
+	document.getElementById("sptotal").innerHTML = "" + storyTotal;
+	document.getElementById("xptotal").innerHTML = "" + experienceTotal;
+}
+
+function pointsToNumber(pointsValue) {
+	if (pointsValue < 1) {
+		return 0;
+	}
+	var pointsCounter = pointsValue;
+	var finalNumber = 0;
+	while (pointsCounter > 0) {
+		finalNumber = finalNumber + 1;
+		pointsCounter = pointsCounter - finalNumber;
+	}
+	return finalNumber;
+}
+</script>
+<div>
+<h1>Node RPG Points-to-Numbers Calculator</h1>
+<p><button type="button" onclick="calculateTable();">Calculate</button></p>
+<form>
+<table>
+<thead>
+<tr>
+  <th>Attribute / Skill</th>
+  <th>BPs</th>
+  <th>BPN</th>
+  <th>TPs</th>
+  <th>TPN</th>
+  <th>SPs</th>
+  <th>SPN</th>
+  <th>XPs</th>
+  <th>XPN</th>
+  <th>Total</th>
+</tr>
+<tr>
+  <td></td>
+  <td id="bptotal"></td>
+  <td></td>
+  <td id="tptotal"></td>
+  <td></td>
+  <td id="sptotal"></td>
+  <td></td>
+  <td id="xptotal"></td>
+  <td></td>
+  <td></td>
+</tr>
+</thead>
+<tbody id="pointstable">
+<tr>
+  <td><input type="text" value="Strength"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Endurance"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Kinesthetic"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Reflexes"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Spatial"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Auditory"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Logical"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text" value="Existential"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<tr>
+  <td><input type="text"/></td>
+  <td><input type="number" class="numberclass" min="0" id="bps"/></td>
+  <td id="bpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="tps"/></td>
+  <td id="tpn"></td>
+  <td><input type="number" class="numberclass" min="0" id="sps"/></td>
+  <td id="spn"></td>
+  <td><input type="number" class="numberclass" min="0" id="xps"/></td>
+  <td id="xpn"></td>
+  <td id="total"></td>
+</tr>
+<!--
+0 - label, does nothing
+1 - BPs
+2 - BP number
+3 - TPs
+4 - TP number
+5 - SPs
+6 - SP number
+7 - XPs
+8 - XP number
+9 - total number
+-->
+</tbody>
+</table>
+<p><button type="button" onclick="calculateTable();">Calculate</button></p>
+</form>
+</div>
+</body>
+</html>
